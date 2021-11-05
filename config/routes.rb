@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: 'end_user/sessions'
   }
   
-  get '/' => 'end_user/homes#top'
+  root to: 'end_user/homes#top'
   get '/about' => 'end_user/homes#about'
   resources :items, only: [:index, :show], controller: 'end_user/items'
   get '/end_users/mypage', to: 'end_user/end_users#show'
