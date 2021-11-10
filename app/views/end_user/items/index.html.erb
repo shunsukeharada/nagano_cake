@@ -6,7 +6,7 @@
     <tr>
       <td><%= attachment_image_tag item, :image, size: "100x100", fallback: "no_image.jpg" %></td>
       <td><%= item.name %></td>
-      <td>￥<%= item.tax_out_price*1.1.round %></td>
+      <td>￥<%= (item.tax_out_price*1.1).round %></td>
     </tr>
     <% end %>
   </tbody>
