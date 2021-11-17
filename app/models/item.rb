@@ -11,4 +11,10 @@ class Item < ApplicationRecord
   
 
   attachment :image
+  
+  def with_tax_price
+    (tax_out_price * 1.1).floor
+  end
+  
+  
 end
