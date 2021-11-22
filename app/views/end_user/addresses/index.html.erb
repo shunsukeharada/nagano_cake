@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>配送先登録/一覧</h2>
+      <%= render "end_user/shared/error_messages", resource: @address %>
+      <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+      　<div class="form_group">
+          <label>郵便番号（ハイフンなし）</label><br>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="form_group">
+          <label>住所</label><br>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+        <div class="form_group">
+          <label>宛名</label><br>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form_group">
+          <%= f.submit "新規登録", class: "btn btn-secondary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">郵便番号</th>
+      <th scope="col">住所</th>
+      <th scope="col">宛名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td><%= link_to "編集する", edit_address_path(address) %></td>
+      <td><%= link_to "削除する", address_path(address), method: :delete, data: { confirm: "削除してもよろしいですか？"} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

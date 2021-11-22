@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>会員情報編集</h2>
+      <%= render "end_user/shared/error_messages", resource: @end %>
+      <%= form_with model: @end_user, local: true do |f| %>
+      　<div class="field">
+            <label>（姓）</label><br />
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+        </div>
+          
+        <div class="field">
+            <label>（名）</label><br />
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+        </div>
+          
+        <div class="field">
+            <label>（セイ）</label><br />
+            <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+        </div>
+          
+        <div class="field">
+            <label>（メイ）</label><br />
+            <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+        </div>
+          
+        <div class="field">
+            <label>郵便番号（ハイフンなし）</label><br />
+            <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+        </div>
+          
+        <div class="field">
+            <label>住所</label><br />
+            <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+        </div>
+        
+        <div class="field">
+            <label>メールアドレス</label><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+          
+        <div class="field">
+            <label>電話番号（ハイフンなし）</label><br />
+            <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+        </div>
+        <div class="form_group">
+          <%= f.submit "編集内容を保存", class: "btn btn-secondary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
