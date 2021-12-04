@@ -6,7 +6,7 @@ class EndUser::OrdersController < ApplicationController
     end
     
     def confirm
-        @order = Order.new(order_params)
+        @order = current_end_user.orders.new(order_params)
         if  params[:order][:select_address] == "0"
             @order.name = current_end_user.first_name + current_end_user.last_name
             @order.postal_code = current_end_user.postal_code
@@ -18,7 +18,11 @@ class EndUser::OrdersController < ApplicationController
                 @order.address = selected_address.address
         elsif params[:order][:select_address] == "2"
             address_new = current_end_user.addresses.new(address_params)
-            address_new.save
+            if address_new.save
+               @order.name = address_new.name
+               @order.postal_code = address_new.postal_code
+               @order.address = address_new.address 
+            end
         end
         @cart_items = current_end_user.cart_items.all
         @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
