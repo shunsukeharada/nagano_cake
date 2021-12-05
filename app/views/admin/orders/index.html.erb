@@ -14,7 +14,7 @@
     <tr>
       <td><%= link_to l(order.created_at), admin_order_path(order) %></td>
       <td><%= order.end_user.first_name + order.end_user.last_name %></td>
-      <td><%= order.order_details.count %></td>
+      <td><%= order.order_details.sum(:quantity) %></td>
       <td><%= order.order_status_i18n %></td>
     </tr>
     <% end %>
