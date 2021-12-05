@@ -30,13 +30,12 @@ class EndUser::OrdersController < ApplicationController
     
     def create
         @cart_items = current_end_user.cart_items.all
-        total_price = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
         @order = current_end_user.orders.new(order_params)
         @cart_items.each do |cart_item|
             @order_detail = @order.order_details.new
             @order_detail.item_id = cart_item.item_id
             @order_detail.quantity = cart_item.amount
-            @order_detail.price = total_price
+            @order_detail.price = cart_item.item.with_tax_price
             @order_detail.save
         end
         @cart_items.destroy_all
