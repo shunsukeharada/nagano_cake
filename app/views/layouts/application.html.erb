@@ -69,6 +69,12 @@
                     ログアウト
                   <% end %>
                 </li>
+                <div class="search-form">
+                  <%= form_with url: admin_items_path, method: :get, local: true do |f| %>
+                    <%= f.text_field :keyword, placeholder: "Search" %>
+                    <%= f.submit "検索" %>
+                  <% end %>
+                </div>
               <% else %>
                 <li>
                   <%= link_to about_path, class: "nav-link text-light" do %>
