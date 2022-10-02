@@ -4,7 +4,11 @@ class Admin::ItemsController < ApplicationController
     end
     
     def index
-        @items = Item.all
+        if @keyword = params[:keyword]
+            @items = Item.search(@keyword)
+        else
+            @items = Item.all
+        end
     end
     
     def show
