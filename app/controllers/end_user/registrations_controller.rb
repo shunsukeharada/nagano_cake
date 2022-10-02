@@ -56,7 +56,7 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   end
   
   def after_update_path_for(resource)
-    e_users_mypage_path
+    end_users_mypage_path
   end
 
   # The path used after sign up for inactive accounts.
