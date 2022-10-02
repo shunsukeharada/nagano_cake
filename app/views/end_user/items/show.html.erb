@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>商品詳細</h2>
+      <%= form_with model: @cart_item, local: true do |f| %>
+      <table class="table">
+        <tbody>
+            <tr>
+              <td>
+                  <%= attachment_image_tag @item, :image, size: "100x100", fallback: "no_image.jpg" %><br>
+              </td>
+            </tr>
+            <tr>
+               <td>商品名</td>
+               <td><%= @item.name %></td>
+            </tr>
+            <tr>
+               <td>商品説明</td>
+               <td><%= @item.explanation %></td>
+            </tr>
+            <tr>
+               <td>ジャンル</td>
+               <td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+               <td>税込価格<br/></td>
+               <td><%= (@item.tax_out_price*1.1).floor %>円</td>
+            </tr>
+            <tr>
+               <td><%= f.select :amount, *[1..10], { include_blank: '個数選択' } %></td>
+            </tr>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+            <tr>
+                <td>
+                    <div class="form_group">
+                      <%= f.submit "カートに入れる", class: "btn btn-secondary"%>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
