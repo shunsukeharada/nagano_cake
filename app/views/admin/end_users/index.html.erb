@@ -16,7 +16,7 @@
       <td><%= end_user.first_name + end_user.last_name %></td>
       <td><%= end_user.email %></td>
       <td>
-          <% if end_user.is_valid = true %>
+          <% if end_user.is_valid == false %>
           有効
         　<% else %>
         　退会

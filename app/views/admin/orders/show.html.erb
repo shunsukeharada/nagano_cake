@@ -1,0 +1,56 @@
+<h1>注文履歴詳細</h1>
+<div class="container">
+  <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
+  <table class="table">
+    <tbody>
+      <tr>
+          <td>購入者</td>
+          <td><%= @order.name %></td>
+      </tr>
+      <tr>
+          <td>注文日</td>
+          <td><%= l(@order.created_at, format: :short) %></td>
+      </tr>
+      <tr>
+          <td>配送先</td>
+          <td><%= '〒' + @order.postal_code + ' ' + @order.address + ' ' + @order.name %></td>
+      </tr>
+      <tr>
+          <td>支払方法</td>
+          <td><% if @order.payment_method == "credit_card" %>クレジットカード<% else %>銀行振込<% end %></td>
+      </tr>
+      <tr>
+          <td>注文ステータス</td>
+          <td><%= f.select :order_status, Order.order_statuses_i18n.invert %><%= f.submit "更新" %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+<% @order_details.each do |order_detail| %>
+<%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">単価（税込）</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+      <th scope="col">製作ステータス</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td><%= attachment_image_tag order_detail.item, :image, size: "100x100", fallback: "no_image.jpg" %><%= order_detail.item.name %></td>
+      <td><%= order_detail.price %></td>
+      <td><%= order_detail.quantity %></td>
+      <td><%= order_detail.subtotal %></td>
+      <td><%= f.select :production_status, OrderDetail.production_statuses_i18n.invert %><%= f.submit "更新" %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+<% end %>
+<h2>商品合計:<%= @total %></h2>
+<h2>送料:800</h2>
+<h2>請求金額合計:<%= @total + 800 %></h2>
+</div>

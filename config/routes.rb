@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   patch '/end_users/withdraw', to: 'end_user/end_users#withdraw'
   delete '/cart_items/destroy_all' => 'end_user/cart_items#destroy_all'
   resources :cart_items, except: [:new, :show, :edit], controller: 'end_user/cart_items'
-  resources :orders, except: [:edit, :update, :destroy], controller: 'end_user/orders'
-  get '/orders/confirm' => 'end_user/orders#confirm'
+  post '/orders/confirm' => 'end_user/orders#confirm'
   get '/orders/complete' => 'end_user/orders#complete'
+  resources :orders, except: [:edit, :update, :destroy], controller: 'end_user/orders'
   resources :addresses, except: [:new, :show], controller: 'end_user/addresses'
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       resources :items, except: [:destroy]
       resources :genres, except: [:new, :show, :destroy]
       resources :end_users, except: [:new, :create, :destroy]
-      resources :orders, only: [:show, :update]
+      resources :orders, only: [:index, :show, :update]
       resources :order_details, only: [:update]
   end
 end
