@@ -1,4 +1,5 @@
 class EndUser::OrdersController < ApplicationController
+    before_action :authenticate_end_user!
     before_action :check_cart_items, only: [:new, :create]
     
     def new

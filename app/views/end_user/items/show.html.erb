@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
+     <%= render 'admin/genres/sidebar', genres: @genres %>
     </div>
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-9">
       <h2>商品詳細</h2>
       <%= form_with model: @cart_item, local: true do |f| %>
       <table class="table">
