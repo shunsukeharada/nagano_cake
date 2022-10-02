@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h2 class="px-3 mx-auto">本当に退会しますか？</h2>
+    <div class="px-5 mx-auto">
+    <h3>退会すると、会員登録情報や</h3></br>
+    <h3>これまでの購入履歴が閲覧できなくなります。</h3></br>
+    <h3>退会する場合は、「退会する」をクリックしてください。</h3>
+    
+    
+    <%= link_to "退会しない", end_users_mypage_path %>
+    <%= link_to "退会する", end_users_withdraw_path, method: :patch, data: { confirm: "【確認】アカウントを削除してもよろしいですか？"} %>
+    </div>
+  </div>
+</div>

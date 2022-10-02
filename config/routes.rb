@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/end_users/edit', to: 'end_user/end_users#edit'        
   patch '/end_users', to: 'end_user/end_users#update'        
   get '/end_users/confirm', to: 'end_user/end_users#confirm'        
-  get '/end_users/withdraw', to: 'end_user/end_users#withdraw'        
+  patch '/end_users/withdraw', to: 'end_user/end_users#withdraw'        
   resources :cart_items, except: [:new, :show, :edit], controller: 'end_user/cart_items'
   get '/cart_items/destroy_all' => 'end_user/cart_items#destroy_all'
   resources :orders, except: [:edit, :update, :destroy], controller: 'end_user/orders'

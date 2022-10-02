@@ -1,1 +1,43 @@
 <h1>マイページ（end_users/mypage）</h1>
+<div class="container">
+  <table class="table">
+    <tbody>
+      <tr>
+          <td>登録情報</td>
+          <td><%= link_to "編集する", end_users_edit_path %></td>
+      </tr>
+      <tr>
+          <td>氏名</td>
+          <td><%= @first_name + @last_name %></td>
+      </tr>
+      <tr>
+          <td>カナ</td>
+          <td><%= @kana_first_name + @kana_last_name %></td>
+      </tr>
+      <tr>
+          <td>郵便番号</td>
+          <td><%= @postal_code %></td>
+      </tr>
+      <tr>
+          <td>住所</td>
+          <td><%= @address %></td>
+      </tr>
+      <tr>
+          <td>電話番号</td>
+          <td><%= @phone_number %></td>
+      </tr>
+      <tr>
+          <td>メールアドレス</td>
+          <td><%= @email %></td>
+      </tr>
+      <tr>
+          <td>配送先</td>
+          <td><%= link_to "一覧を見る", addresses_path %></td>
+      </tr>
+      <tr>
+          <td>注文履歴</td>
+          <td><%= link_to "一覧を見る", orders_path %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
